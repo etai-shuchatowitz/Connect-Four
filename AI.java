@@ -5,7 +5,8 @@ public class AI {
 	private static final int WEIGHT = 100;
   
 	public Move minimax(Board b, int depth, int alpha, int beta, String player, Move move) throws IOException, InterruptedException {
-		
+
+		// Base case
 		if(depth == 0 || b.boardScore >= 50000) {
 			return move;
 		}
