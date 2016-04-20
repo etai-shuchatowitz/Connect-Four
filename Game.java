@@ -12,8 +12,6 @@ public class Game {
 		b = new Board();
 		while(!b.gameOver()) {
 			personMove(HUMAN);
-			System.out.println("Human Score: " +b.scores.get(HUMAN) + "Computer Score " + b.scores.get(COMPUTER));
-			System.out.println("Boardscore: " + b.boardScore);
 			if(b.gameOver()) {
 				break;
 			}

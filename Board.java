@@ -15,7 +15,7 @@ public class Board {
 	public Board() throws IOException, InterruptedException {
 		scores.put("human", 0);
 		scores.put("computer", 0);
-		letters = new HashMap<String, Character>();
+		letters = new HashMap<>();
 		letters.put("human", 'H');
 		letters.put("computer", 'C');
 		initializeBoard();
@@ -27,12 +27,7 @@ public class Board {
 		for(int i = 0; i < 6; i++) {
 			for(int j = 0; j < 7; j++) {
 				board[i][j] = '*';
-				Move tempArray = new Move(i,j);
 			}
-		}
-		
-		for(int i = 0; i < 7; i++) {
-			Move tempMove = new Move(5, i);
 		}
 	}
 	
@@ -52,20 +47,15 @@ public class Board {
 		}
 		
 		else {
-			Move tempMove = new Move(y, x);
 			if(team.equals("human")) {
 				board[y][x] = 'H';
-				
-				/*if(y-1 >= 0) {
-					possibleMoves.add(new Move(x, y-1));
-				}*/
-				
+				boardScore -= 1;
 			}
 			else {
-				board[y][x] = 'C'; 
+				board[y][x] = 'C';
+				boardScore += 1;
 			}
 			evaluateBoard();
-			boardScore -= 1;
 			
 			return true;
 		}
@@ -149,7 +139,7 @@ public class Board {
 					}
 					else {
 						piece[tally] = board[row-tally][column+tally]; 
-						// if i found a piece of the right color
+						// if I found a piece of the right color
 						if(piece[tally] == letter ) {
 							if(counter == 0) {
 								counter = 1;
@@ -161,6 +151,7 @@ public class Board {
 								}
 							}
 						}
+						// If it's a blocked sequence, reset the counter
 						else if(piece[tally] == oppositeLetter){
 							if(counter > 1) {
 								counter = 1;
@@ -371,12 +362,12 @@ public class Board {
 		return number;
 	}
 
+	/* Evaluate the board and check what it's total is.
+	 */
 	private void evaluateBoard() {
 
-		boardScore = 0;
 		//Reset the scores to zero
 		int compScore = 0;
-
 		int humScore = 0;
 		
 		//evaluate each direction
@@ -394,7 +385,11 @@ public class Board {
 		scores.put("human", humScore);
 		scores.put("computer", compScore);
 	}
-	
+	/*
+	Check to see if the game is over.
+	A game over is determined as (a) Human wins (b) Computer wins (c) The board is full
+	@return The status of the game
+	 */
 	public boolean gameOver() {
 		if(boardFull()) {
 			System.out.println("Tie game!");
@@ -414,7 +409,10 @@ public class Board {
 			}
 		}
 	}
-	
+	/*
+	Check to see whether the board is full or not.
+	@return The status of the board
+	 */
 	private boolean boardFull() {
 		for(int i = 0; i < 6; i++) {
 			for(int j = 0; j < 7; j++) {
