@@ -1,3 +1,7 @@
+/*
+An AI class that
+ */
+
 import java.io.IOException;
 
 public class AI {
@@ -13,9 +17,11 @@ public class AI {
 		
 		else if(player.equals("computer")) {
 			
-			Move maxMove = new Move(0,0);
+			Move maxMove = new Move(0,0); // Keep track of the best human's move for the computer
 			maxMove.moveScore = WEIGHT*-10000;
-			Move returnMove = new Move(0,0);
+
+			Move returnMove = new Move(0,0); // Keep track of the computer's best move
+
 			
 			//Do this for every possible column
 			for(int x = 0; x < 7; x++) {
@@ -34,7 +40,8 @@ public class AI {
 
 				Move miniMaxMove = minimax(b, depth-1, alpha, beta, "human", m);
 
-				
+				//If the best score beats out the current best,
+				//store it and save the move
 				if(miniMaxMove.moveScore >= maxMove.moveScore) {
 					maxMove = miniMaxMove;
 					returnMove = m;
