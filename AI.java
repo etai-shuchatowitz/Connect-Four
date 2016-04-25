@@ -1,7 +1,3 @@
-/*
-An AI class that
- */
-
 import java.io.IOException;
 
 public class AI {
@@ -30,7 +26,7 @@ public class AI {
 				while(b.findYSpot(x) == -1) {
 					x++;
 					if(x > 6) {
-						x = 0;
+						return move;
 					}
 				}
 				
@@ -70,8 +66,8 @@ public class AI {
 				// If column is filled, move on
 				while(b.findYSpot(x) == -1) {
 					x++;
-					if(x>6) {
-						x = 0;
+					if(x > 6) {
+						return move;
 					}
 				}
 
@@ -99,4 +95,3 @@ public class AI {
 		}
 	}
 }
-
